@@ -11,8 +11,8 @@ export interface ICustomButtonProps {
 }
 
 export interface ISearchManufacturerProps {
-    manufacturer: string;
-    setManufacturer?: (manufacturer: string) => void;
+    searchManufacturer: string;
+    setSearchManufacturer?: (manufacturer: string) => void;
 }
 
 export interface ICarProps {
@@ -30,13 +30,26 @@ export interface ICarProps {
     }
 }
 
-export interface ICarTypeProps {
-    type: string;
-    car: ICarProps[] | null;
-}
-
 export interface ICarDetailsProps {
     isOpen: boolean;
     close: () => void
     car: ICarProps;
+}
+
+export interface IPropsData {
+    manufacturer: string;
+    model: string;
+    type: string;
+}
+
+export interface IFilter {
+    title: string;
+    options: string[];
+    setType: (type: string) => void;
+}
+
+export interface ISearchBar {
+    setManufacturer: (manufacturer: string) => void;
+    setModel: (model: string) => void;
+
 }

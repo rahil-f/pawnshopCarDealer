@@ -1,49 +1,93 @@
-import Image from 'next/image'
+"use client"
+
+import React, { useState, useEffect } from 'react'
 import { Acceuil, CustomFilter, SearchBar, CarCard } from '@/components'
 import { getAllCar } from '@/utils'
-import { ICarTypeProps, ICarProps } from "@/types"
+import { ICarProps } from '@/types'
+import { Categories } from '@/constants'
 
 export default function Home() {
-  const allCar = getAllCar()
+    const [cars, setCars] = useState<ICarProps[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
 
-  return (
-    <main className="overflow-hidden">
-      <Acceuil />
-      <div className="mt-12 padding-y padding-x max-width" id="vehicules">
-        <div className='acceuil__text-container'>
-          <h1 className='text-4xl font-extrabold'>
-            Catalogue des véhicules
-          </h1>
-          <p>choissisez le vehicules de vos rêves</p>
-        </div>
-        <div className='home__filters'>
-          <SearchBar />
-          <div className='home__filter-container'>
-          <CustomFilter title='type' />
-          <CustomFilter title='emplacement' />            
-          </div>
-        </div>
+    const [manufacturer, setManufacturer] = useState<string>('')
+    const [model, setModel] = useState<string>('')
+    const [type, setType] = useState<string>('')
 
-        <section>
-          <div className="home__cars-wrapper">
-            {allCar?.map((carList)=> (
-              carList?.map((cars)=> (
-                cars?.map((car)=> (
-                  <CarCard 
-                    key={car.image}
-                    title={car.title}
-                    brand={car.brand}
-                    price={car.price}
-                    type={car.type}
-                    image={car.image}
-                    data={car.data}
-                  />
-              )
-            )))))}
-          </div>
-        </section>
+    const getCar = () => {
+        setLoading(true);
+        try {
+            const allCar: ICarProps[] = getAllCar({
+                manufacturer: manufacturer || '',
+                model: model || '',
+                type: type || '',
+            });
+            setCars(allCar);
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoading(false);
+        }
 
-      </div>
-    </main>
-  )
+    }
+
+    useEffect(() => {
+        console.log(cars, manufacturer, model, type);
+        getCar()
+    }, [manufacturer, model, type])
+
+    return (
+        <main className="overflow-hidden">
+            <Acceuil />
+            <div className="mt-12 padding-y padding-x max-width" id="vehicules">
+                <div className='acceuil__text-container'>
+                    <h1 className='text-4xl font-extrabold'>
+                        Catalogue des véhicules
+                    </h1>
+                    <p>choissisez le vehicules de vos rêves</p>
+                </div>
+                <div className='acceuil__filters'>
+                    <SearchBar
+                        setManufacturer={setManufacturer}
+                        setModel={setModel}
+                    />
+                    <div className='acceuil__filter-container'>
+                        <CustomFilter
+                            title='type'
+                            options={Categories}
+                            setType={setType}
+                        />
+                    </div>
+                </div>
+
+                <section>
+                    <div className="acceuil__cars-wrapper">
+                        {cars.length > 0 ? (
+                            cars?.map((carList) => (
+                                <CarCard
+                                    key={`${carList.image}${Math.floor(Math.random() * 1000)}`}
+                                    title={carList.title}
+                                    brand={carList.brand}
+                                    price={carList.price}
+                                    type={carList.type}
+                                    image={carList.image}
+                                    data={carList.data}
+                                />
+                            ))
+                        ) : (
+                            <div className='acceuil__error-container'>
+                                <h2 className='text-black text-xl font-bold'>Aucun vehicule avec ces filtres</h2>
+                            </div>
+                        )}
+                    </div>
+                    {loading && (
+                        <div>
+                            <p>loading skeleton todo</p>
+                        </div>
+                    )}
+                </section>
+
+            </div>
+        </main>
+    )
 }

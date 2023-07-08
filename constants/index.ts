@@ -11,7 +11,7 @@ export const footerLinks = [
     {
         title: "Société",
         links: [
-            { title: "Evenement", url: "/" },
+            { title: "Evenement", url: "/event" },
             { title: "Blog", url: "/" },
             { title: "Podcast", url: "/" },
             { title: "Invite un ami", url: "/" },
@@ -29,6 +29,8 @@ export const footerLinks = [
 ];
 
 export const Manufacturer = [
+    "Toutes",
+    "Autres",
     "Albany",
     "Annis",
     "Benefactor",
@@ -86,4 +88,21 @@ export const Manufacturer = [
     "Western",
     "Willard",
     "Zirconium",
+    "Bordeau",
 ];
+
+export const Categories = [
+    "Sport Classic",
+    "Compact",
+    "Coupe",
+    "Moto",
+    "Muscles",
+    "Tout Terrain",
+    "SUV",
+    "Sedans",
+    "Sport",
+    "Super",
+    "Van",
+    "Bateaux",
+    "Aériens",
+]
