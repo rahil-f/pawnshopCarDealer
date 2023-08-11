@@ -7,7 +7,7 @@ import { createClient } from '@supabase/supabase-js'
 import { Categories, Manufacturer } from '@/constants'
 import { ICarPropsBdd } from '@/types'
 
-async function getAllcarBdd(filter: string, sell: boolean, plate: string): Promise<ICarPropsBdd[]> {
+async function getAllcarBdd(filter: string, sell: boolean, plate: string): Promise<ICarPropsBdd[] | null> {
     console.log("getcarBdd", sell)
     const supabaseAdmin = createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -54,9 +54,9 @@ const NewCar = () => {
     const getCar = async () => {
         setLoading(true);
         try {
-            const cars: ICarPropsBdd[] = await getAllcarBdd(filter, sell, plate);
+            const cars: ICarPropsBdd[] | null = await getAllcarBdd(filter, sell, plate);
             console.log('cars', cars);
-            setCars(cars);
+            if (cars) setCars(cars);
         } catch (error) {
             console.error(error)
         } finally {
