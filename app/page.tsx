@@ -73,7 +73,7 @@ export default function Home() {
             //     type: type || '',
             // });
             //setCars(allCar);
-            const cars: ICarPropsBdd[] = await getcarBdd({
+            const cars: ICarPropsBdd[] | null = await getcarBdd({
                 manufacturer: manufacturer,
                 model: model,
                 type: type,
