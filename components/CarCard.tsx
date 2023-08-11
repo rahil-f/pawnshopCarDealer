@@ -3,10 +3,11 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import CustomButton from './CustomButton'
-import { ICarProps } from '@/types'
+import { ICarProps, ICarPropsBis } from '@/types'
 import CarDetails from './CarDetails'
 
-const CarCard = ({title, brand, price, type, image, data}: ICarProps) => {
+const CarCard = ({
+  title, brand, price, type, image, engine, turbo, brake, trans, susp, plate }: ICarPropsBis) => {
 
   const [open, setOpen] = useState<boolean>(false)
 
@@ -34,49 +35,49 @@ const CarCard = ({title, brand, price, type, image, data}: ICarProps) => {
 }
 
   return (
-    <div className="car-card group">
+    <div className="car-card group transform transition duration-500 hover:scale-105 hover:shadow-2xl">
       <div className="car-card__content">
         <h2 className="car-card__content-title">
           {title} {brand}
         </h2>
       </div>
       <p className="flex mt-6 text-[32px] font-extrabold">
-        <span className="self-start text-[14px] font-semibold">
+        <span className="self-start text-[14px] font-bold">
           {price}
         </span>
         <span className="self-end text-[14px] font-medium">
-          &nbsp;$$
+          &nbsp;$
         </span>
       </p>
-      <div className="relative w-full h-40 my-3 object-contain">
+      <div className="relative w-full h-40 my-3 object-contain transform transition duration-500 group-hover:scale-110">
         <Image src={image} alt='image voiture' fill priority className='object-contain' />
       </div>
 
       <div className="relative flex w-full mt-2">
-        <div className="flex justify-between	 group-hover:invisible w-full text-grey">
+        <div className="flex justify-between group-hover:invisible w-full text-grey">
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/engine.png" width={40} height={40} alt="moteur" />
-            {numberImg(data.engine)}
+            {numberImg(engine)}
           </div>
 
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/turbo.png" width={40} height={40} alt="turbo" />
-            {numberImg(data.turbo)}
+            {numberImg(turbo)}
           </div>
 
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/brake.png" width={40} height={40} alt="brake" />
-            {numberImg(data.brake)}
+            {numberImg(brake)}
           </div>
 
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/trans.png" width={40} height={40} alt="trans" />
-            {numberImg(data.trans)}
+            {numberImg(trans)}
           </div>
 
           <div className="flex flex-col justify-center items-center gap-2">
             <Image src="/susp.png" width={40} height={40} alt="susp" />
-            {numberImg(data.susp)}
+            {numberImg(susp)}
           </div>
         </div>
 
@@ -94,7 +95,7 @@ const CarCard = ({title, brand, price, type, image, data}: ICarProps) => {
       <CarDetails
         isOpen={open}
         close={() => setOpen(false)}
-        car={{title, brand, price, type, image, data}}
+        car={{ title, brand, price, type, image, engine, turbo, brake, trans, susp, plate }}
       />
     </div>
   )

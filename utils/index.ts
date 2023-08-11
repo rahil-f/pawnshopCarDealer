@@ -1,3 +1,4 @@
+import { createClient } from '@supabase/supabase-js'
 import { Car } from "@/data";
 import { IPropsData, ICarProps } from '@/types'
 
@@ -64,3 +65,20 @@ export const updateSearch = (type: string, value: string) => {
 
     return newSearch;
 }
+
+// export async function getcarBdd() {
+//     console.log("getcarBdd")
+//     const supabaseAdmin = createClient(
+//         process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+//         process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+//     )
+
+//     const { data } = await supabaseAdmin
+//         .from('vehicles')
+//         .select('*')
+//         .order('id', { ascending: true });
+
+//     console.log(data);
+
+//     return data;
+// }

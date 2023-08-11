@@ -4,10 +4,10 @@ import React, { Fragment } from 'react'
 import Image from 'next/image'
 import { Dialog, Transition } from '@headlessui/react'
 
-import { ICarDetailsProps } from '@/types'
+import { ICarDetailsPropsBis } from '@/types'
 
 
-const CarDetails = ({ isOpen, close, car }: ICarDetailsProps) => {
+const CarDetails = ({ isOpen, close, car }: ICarDetailsPropsBis) => {
 
     const returnValue = (key: string) => {
         if (key === "data" || key === "image") return false;
@@ -65,17 +65,6 @@ const CarDetails = ({ isOpen, close, car }: ICarDetailsProps) => {
                                     <div className="flex-1 flex flex-col gap-3">
                                         <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
                                             <Image src={car.image} alt='image voiture' fill priority className='object-contain' />
-                                        </div>
-                                        <div className="flex gap-3">
-                                            <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                                <Image src={car.image} alt='image voiture' fill priority className='object-contain' />
-                                            </div>
-                                            <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                                <Image src={car.image} alt='image voiture' fill priority className='object-contain' />
-                                            </div>
-                                            <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                                <Image src={car.image} alt='image voiture' fill priority className='object-contain' />
-                                            </div>
                                         </div>
                                     </div>
 

@@ -24,7 +24,7 @@ const SearchBar = ({ setManufacturer, setModel }: ISearchBar) => {
     const router = useRouter();
     const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (searchManufacturer === '' && searchModel === '') return alert(`fill the search field`);
+        // if (searchManufacturer === '' && searchModel === '') return alert(`fill the search field`);
 
         setModel(searchModel.toLowerCase());
         setManufacturer(searchManufacturer.toLocaleLowerCase());

@@ -92,6 +92,7 @@ export const Manufacturer = [
 ];
 
 export const Categories = [
+    "All",
     "Sport Classic",
     "Compact",
     "Coupe",
@@ -105,4 +106,12 @@ export const Categories = [
     "Van",
     "Bateaux",
     "Aériens",
+]
+
+export const order = [
+    "Pertinence",
+    "Prix croissants",
+    "Prix decroissants",
+    "Plus récentes",
+    "Plus anciennes",
 ]
