@@ -7,7 +7,7 @@ import { getAllCar } from '@/utils'
 import { IFilterProps, ICarPropsBdd } from '@/types'
 import { Categories, order } from '@/constants'
 
-async function getcarBdd(filter: IFilterProps): Promise<ICarPropsBdd[]> {
+async function getcarBdd(filter: IFilterProps): Promise<ICarPropsBdd[] | null> {
     const { manufacturer, model, type, sell, filterOrder } = filter
     console.log("getcarBdd")
     const supabaseAdmin = createClient(
@@ -80,7 +80,7 @@ export default function Home() {
                 filterOrder: filterOrder,
             });
             console.log('cars', cars);
-            setCars(cars);
+            if (cars) setCars(cars);
         } catch (error) {
             console.error(error)
         } finally {
