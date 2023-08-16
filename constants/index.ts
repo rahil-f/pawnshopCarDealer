@@ -43,6 +43,7 @@ export const Manufacturer = [
     "Chariot",
     "Cheval",
     "Coil",
+    "Cyclone",
     "Declasse",
     "Dewbauchee",
     "Dinka",
